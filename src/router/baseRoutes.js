@@ -1,8 +1,10 @@
 const Home 				= () => import('Views/Router.vue');
 const Welcome 			= () => import('Views/Welcome.vue');
 const NotFound 			= () => import('Views/Router.vue');
-const WindowData 		= () => import('Views/WindowData.vue');
-const MobileTest 		= () => import('Views/MobileTest.vue');
+const WindowData 		= () => import('Views/Test/WindowData.vue');
+const MiscTest 			= () => import('Views/Test/Misc.vue');
+const ToastsTest 		= () => import('Views/Test/Toasts.vue');
+const Notification		= () => import('Views/Test/Notification.vue');
 const Testing 			= () => import('Views/Router.vue');
 
 export default [
@@ -43,27 +45,47 @@ export default [
 		},
 		children: [
 			{
+				path: "toast-test",
+				name: "toast-test",
+				component: ToastsTest,
+				meta: {
+					text:'Toasts',
+					icon:'fas fa-bread-slice',
+					visibleInDrawer:true
+				},
+			},
+			{
+				path: "notification-test",
+				name: "notification-test",
+				component: Notification,
+				meta: {
+					text:'Notifications',
+					icon:'fas fa-bell',
+					visibleInDrawer:true
+				},
+			},
+			{
 				path: "window-data",
 				name: "window-data",
 				component: WindowData,
 				meta: {
 					text:'Window data',
-					parentText:'Desktop Testing',
 					icon:'fas fa-desktop',
 					visibleInDrawer:true
 				},
 			},
 			{
-				path: "mobile-test",
-				name: "mobile-test",
-				component: MobileTest,
+				path: "misc-test",
+				name: "misc-test",
+				component: MiscTest,
 				meta: {
-					text:'Permissions',
-					parentText:'Mobile testing',
-					icon:'fas fa-mobile-alt',
+					text:'Misc',
+					icon:'fas fa-briefcase',
 					visibleInDrawer:true
 				},
 			},
+			
+			
 		]
 	},
 	

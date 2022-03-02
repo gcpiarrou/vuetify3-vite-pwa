@@ -1,7 +1,12 @@
 import { createStore } from 'vuex';
 
-const store = createStore({
+import { useMediaQuery, useStorage } from '@vueuse/core'
 
+const isLargeScreen = useMediaQuery('(min-width: 1024px)')
+const isPreferredDark = useMediaQuery('(prefers-color-scheme: dark)')
+var isDark = useStorage('isDark', isPreferredDark);
+	
+const store = createStore({
 
 	state() {
 		return {
@@ -12,14 +17,14 @@ const store = createStore({
 				}
 			},
 			drawer:{
-				isOpen: false
+				isOpen: isLargeScreen
 			},
 			app:{
-				isDark:false
+				isDark: isDark,
+				name: 'Cooking app'
 			}
 		}
 	},
-
 
 	mutations: {
 		openDrawer(state){
@@ -35,7 +40,8 @@ const store = createStore({
 			state.drawer.isOpen = data
 		},
 		setTheme(state, data) {
-			state.app.isDark = data
+			state.app.isDark = data;
+			isDark = data;
 		}
 	}
 
