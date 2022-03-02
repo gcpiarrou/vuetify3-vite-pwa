@@ -1,21 +1,30 @@
 <template>
+<div class="d-flex flex-column align-center">
+    <div>
+        <v-alert border="start" border-color="info" elevation="2" class="my-4">
+            The window is {{ width }} x {{height}}
+        </v-alert>
 
-<v-alert border="start" border-color="deep-purple accent-4" elevation="2" class="my-4">
-    The window width is {{ windowWidth }} px
-</v-alert>
+        <v-alert border="start" border-color="info" elevation="2" class="my-4">
+            This screen is {{ isLargeScreen?'':'not' }} large
+        </v-alert>
 
-<v-alert border="start" border-color="deep-purple accent-4" elevation="2" class="my-4">
-    This window is {{ isMobile?'':'not' }} mobile
-</v-alert>
+        <v-alert border="start" border-color="info" elevation="2" class="my-4">
+            The preferred theme is {{ isPreferredDark?'':'not' }} dark
+        </v-alert>
+    </div>
+    
+</div>
+
 
 </template>
 
 <script setup>
-    import { useWindowWidth } from "Helpers/composables/useWindowWidth";
-    import { useMobile } from "Helpers/composables/useMobile";
-    import { ref } from "@vue/reactivity";
+    import { useWindowSize } from '@vueuse/core'
+    import { useMediaQuery } from '@vueuse/core'
 
-    const { windowWidth } = useWindowWidth();
-    const { isMobile } = useMobile();
-    const dialog = ref(true);
+    const { width, height } = useWindowSize()
+    const isLargeScreen = useMediaQuery('(min-width: 1024px)')
+    const isPreferredDark = useMediaQuery('(prefers-color-scheme: dark)')
+
 </script>

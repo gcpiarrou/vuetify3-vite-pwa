@@ -1,6 +1,5 @@
 const Home 				= () => import('Views/Router.vue');
 const Welcome 			= () => import('Views/Welcome.vue');
-const Users 			= () => import('Views/Router.vue');
 const NotFound 			= () => import('Views/Router.vue');
 const WindowData 		= () => import('Views/WindowData.vue');
 const MobileTest 		= () => import('Views/MobileTest.vue');
@@ -25,7 +24,7 @@ export default [
 				name: 'home-welcome',
 				meta: {
 					text:'Welcome',
-					icon:'fas fa-sun',
+					icon:'fas fa-home',
 					visibleInDrawer:true
 				},
 			}

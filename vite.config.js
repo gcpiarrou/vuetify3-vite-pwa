@@ -17,11 +17,11 @@ const VitePWAConfig = {
     name: "PWA Test Project",
     id: "Gaston Campana's PWA Test Project",
     short_name: "Test",
-    theme_color: "#1f2937",
-    start_url: "./",
+    theme_color: "#6200ee",
+    start_url: "./#/home/welcome",
     scope: "./",
     display: "standalone",
-    background_color: "#1f2937",
+    background_color: "#6200ee",
     icons: [
       {
         src: "./img/icons/android-chrome-192x192.png",

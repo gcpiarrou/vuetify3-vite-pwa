@@ -12,7 +12,10 @@ const store = createStore({
 				}
 			},
 			drawer:{
-				isOpen: true
+				isOpen: false
+			},
+			app:{
+				isDark:false
 			}
 		}
 	},
@@ -30,6 +33,9 @@ const store = createStore({
 		},
 		setDrawer(state, data) {
 			state.drawer.isOpen = data
+		},
+		setTheme(state, data) {
+			state.app.isDark = data
 		}
 	}
 

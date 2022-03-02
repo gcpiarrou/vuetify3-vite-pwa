@@ -1,14 +1,21 @@
 import 'vuetify/styles' // Global CSS has to be imported
 
+// Vue
 import { createApp } from 'vue';
 
+// Vuetify
 import { createVuetify } from 'vuetify';
 import * as components from 'vuetify/components'
 import * as directives from 'vuetify/directives'
-import { aliases, fa } from 'vuetify/lib/iconsets/fa'
 
+// Fontawesome
+import { aliases, fa } from 'vuetify/lib/iconsets/fa'
 import '@fortawesome/fontawesome-free/css/all.css'
 
+// Toast
+import Toast from "vue-toastification"; // https://github.com/Maronato/vue-toastification
+import "vue-toastification/dist/index.css";
+const toastOptions = {};
 
 import router from './router'
 import store from './store'
@@ -36,4 +43,5 @@ const app = createApp(App);
 app.use(vuetify);
 app.use(router);
 app.use(store);
+app.use(Toast, toastOptions);
 app.mount('#app');

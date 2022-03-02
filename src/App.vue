@@ -1,19 +1,23 @@
 <template>
-	<v-app>
+	<v-app :theme="isDark?'dark':'light'" style="height:100vh">
 			
 		<AppBar></AppBar>
 		<Drawer></Drawer>
 		<ReloadPWA></ReloadPWA>
 		<v-main>
-			<v-container fluid>
-				<router-view></router-view>
-			</v-container>
+			<Router></Router>
 		</v-main>
 	</v-app>
 </template>
 
 <script setup>
-	import AppBar from 'Components/navigation/AppBar.vue';
-	import Drawer from 'Components/navigation/Drawer.vue';
-	import ReloadPWA from 'Components/pwa/ReloadPWA.vue';
+	import { defineAsyncComponent } from "vue";
+	import { useAppTheme }    from "Helpers/composables/useAppTheme";
+    const { isDark }    = useAppTheme();
+
+	const AppBar	= defineAsyncComponent(() => import("Components/navigation/AppBar.vue"));
+	const Drawer	= defineAsyncComponent(() => import("Components/navigation/Drawer.vue"));
+	const ReloadPWA	= defineAsyncComponent(() => import("Components/pwa/ReloadPWA.vue"));
+	const Router	= defineAsyncComponent(() => import("Views/Router.vue"));
+
 </script>

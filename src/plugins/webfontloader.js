@@ -5,9 +5,9 @@
  */
 
 export async function loadFonts () {
-  const webFontLoader = await import(/* webpackChunkName: "webfontloader" */'webfontloader')
+  const WebFont  = await import(/* webpackChunkName: "webfontloader" */'webfontloader')
 
-  webFontLoader.load({
+  WebFont.load({
     google: {
       families: ['Roboto:100,300,400,500,700,900&display=swap'],
     },

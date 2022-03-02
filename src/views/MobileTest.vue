@@ -1,49 +1,57 @@
 <template>
 
     <div class="d-flex flex-column align-center">
-        <div class="d-flex flex-column">
+        <div>
+            <h4 class="mt-5">Vibration</h4>
             <v-btn class="ma-2" @click="vibrate">Vibrate 200ms</v-btn>
             <v-btn class="ma-2" @click="vibrateWithPattern">Vibrate with pattern</v-btn>
-            <v-btn class="ma-2" @click="requestNotificationPermission">Request notification permission</v-btn>
-            <v-btn class="ma-2" @click="nonPersistentNotification" v-if="!isMobile">Non persistent notification</v-btn>
-            <v-btn class="ma-2" @click="persistentNotification">Persistent notification</v-btn>
-            <v-btn class="ma-2" @click="share">Share</v-btn>
-            <v-btn class="ma-2" @click="intent">Intent</v-btn>
+            
+            <h4 class="mt-5">Notification</h4>
+            <v-btn class="ma-2" @click="persistentNotification" v-if="notificationPermission==='granted'">Persistent notification</v-btn>
+            <v-btn class="ma-2" @click="showNotifcation">Show notification</v-btn>
+            
+            <h4 class="mt-5">Sharing</h4>
+            <v-btn class="ma-2" @click="startShare">Share</v-btn>
+
+            <h4 class="mt-5">Toasts</h4>
+            <v-btn class="ma-2" @click="successToast">Success Toast</v-btn>
+            <v-btn class="ma-2" @click="infoToast">Info Toast</v-btn>
+            <v-btn class="ma-2" @click="errorToast">Error Toast</v-btn>
+            <v-btn class="ma-2" @click="defaultToast">Default Toast</v-btn>
+            <v-btn class="ma-2" @click="warningToast">Warning Toast</v-btn>
         </div>
         
 
-        <span>Notification permissions: {{notificationPermission}}</span>
     </div>    
 
 </template>
 
 
 <script setup>
-    import { useWindowWidth } from "Helpers/composables/useWindowWidth";
-    import { useMobile } from "Helpers/composables/useMobile";
     import { ref } from "@vue/reactivity";
     import { onMounted } from "@vue/runtime-core";
+    import { useToast } from "vue-toastification";
+    import { useVibrate, useShare, useWebNotification } from '@vueuse/core';
 
-    const { windowWidth } = useWindowWidth();
-    const { isMobile } = useMobile();
+    const toast = useToast();
 
-    const vibrate = () => navigator.vibrate(200);
-    const vibrateWithPattern = () => navigator.vibrate([100,50,100,50,200]);
+    const { vibrate } = useVibrate({ pattern: [200] });
+    const { vibrateWithPattern } = useVibrate({ pattern: [100,50,100,50,200] });
+    const { share } = useShare()
 
-    const requestNotificationPermission = () => {
-        if (!('Notification' in window)) {
-            alert('Notification API not supported!');
-            return;
+    const { isSupported, show, } =  useWebNotification({
+                                        title: 'Hello, VueUse world!',
+                                        dir: 'auto',
+                                        lang: 'es',
+                                        renotify: true,
+                                        tag: 'test',
+                                    })
+
+    const showNotifcation = () => {
+        if (isSupported) {
+            show()
         }
-        
-        Notification.requestPermission();
-    };
-
-    const notificationPermission = ref(Notification.permission);
-    
-    const nonPersistentNotification = () => {
-        new Notification("Hi there - non-persistent!")
-    };
+    }
 
     const serviceWorker = ref(null);
 
@@ -52,6 +60,7 @@
                                 serviceWorker.value = sw;
                             })
     
+    const notificationPermission = ref(Notification.permission);
 
     const persistentNotification = () => {
         if(notificationPermission.value === 'granted'){
@@ -74,34 +83,20 @@
         }
     }
 
-    const share = () => {
-        if (!("share" in navigator)) {
-            alert('Web Share API not supported.');
-            return;
-        }
-
-        navigator.share({
-            title: 'Vue 3 Tailwind Vite Project',
-            text: 'A public testing playground',
-            url: 'https://gcpiarrou.github.io/vue3-tailwind-vite-project/'
-            })
-            .then(() => console.log('Successful share'))
-            .catch(error => console.log('Error sharing:', error));
+    function startShare() {
+        share({
+            title: 'Hello',
+            text: 'Hello my friend!',
+            url: location.href,
+        })
     }
 
-    const intent = () => {
-        if (!("Intent" in window)) {
-            alert('Web Intents API not supported.');
-            return;
-        }
+    const successToast  = () => { toast.success("This is a success toast"); }
+    const infoToast     = () => { toast.info("This is an info toast"); }
+    const errorToast    = () => { toast.error("This is a error toast"); }
+    const defaultToast  = () => { toast("This is a default toast"); }
+    const warningToast  = () => { toast.warning("This is a warning toast"); }
 
-        var intent = new Intent('https://gcpiarrou.github.io/vue3-tailwind-vite-project/');
-        navigator.startActivity(intent, function () {
-            console.log('Successful share')
-        }, function (error) {
-            console.log('Error sharing:', error);
-        });
-    }
 
 
 </script>

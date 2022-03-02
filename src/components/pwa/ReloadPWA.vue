@@ -1,15 +1,15 @@
 <template>
 
 	<div class="text-center">
-		<v-dialog :model-value="offlineReady || needRefresh">
+		<v-dialog :model-value="offlineReady || needRefresh" style="max-width:30em">
 			<v-card>
 				<v-card-text>
 					<h3 v-if="offlineReady"> The app is ready to work offline.</h3>
-					<h3 v-else>New version available, touch Update to upgrade the software.</h3>
+					<h3 v-else><p>New version available</p> <p>Touch Update to upgrade the software</p></h3>
 				</v-card-text>
-				<v-card-actions>
-					<v-btn v-if="needRefresh" @click="updateServiceWorker()" color="success" block>Update</v-btn>
-					<v-btn color="danger" block @click="close">Close</v-btn>
+				<v-card-actions class="flex-column">
+					<v-btn v-if="needRefresh" @click="updateServiceWorker()" color="success" class="my-2">Update</v-btn>
+					<v-btn @click="close" class="my-2">Close</v-btn>
 				</v-card-actions>
 			</v-card>
 		</v-dialog>
