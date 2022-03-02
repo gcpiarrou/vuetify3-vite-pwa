@@ -6,7 +6,7 @@
     "serve": "vite preview",
     "build": "vite build",
     "dev": "vite",
-    "publish": "npx gh-pages -d dist",
+    "publish": "yarn gh-pages -d dist",
     "preview": "vite preview"
   },
   "dependencies": {

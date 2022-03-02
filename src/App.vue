@@ -17,4 +17,3 @@
 	import Drawer from 'Components/navigation/Drawer.vue';
 	import ReloadPWA from 'Components/pwa/ReloadPWA.vue';
 </script>
-	components: { ReloadPWA },
