@@ -1580,7 +1580,16 @@
     "@vuetify/loader-shared" "^1.3.0"
     "debug" "^4.3.3"
 
-"@vueuse/core@^7.7.0":
+"@vueuse/components@^7.7.0":
+  "integrity" "sha512-4z27OpH/ILSaTvL81Dr2c2///cbT9ubDAfm4lP8wmqXoZJp8B6L/xlpFJPvbw80zUsNaaxtgwKxs5LR59nkrTg=="
+  "resolved" "https://registry.npmjs.org/@vueuse/components/-/components-7.7.0.tgz"
+  "version" "7.7.0"
+  dependencies:
+    "@vueuse/core" "7.7.0"
+    "@vueuse/shared" "7.7.0"
+    "vue-demi" "*"
+
+"@vueuse/core@^7.7.0", "@vueuse/core@7.7.0":
   "integrity" "sha512-DS8+dg758CiWnswebYHjS05PqTtc1ZLomsDlkFjG/KC0iFRgFIsGC66AAGuSXLqWCoirp2xN6N2mkrp1aHdI7A=="
   "resolved" "https://registry.npmjs.org/@vueuse/core/-/core-7.7.0.tgz"
   "version" "7.7.0"
