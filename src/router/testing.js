@@ -1,42 +1,15 @@
-const Home 				= () => import('Views/Router.vue');
-const Welcome 			= () => import('Views/Welcome.vue');
-const NotFound 			= () => import('Views/Router.vue');
 const WindowData 		= () => import('Views/Test/WindowData.vue');
 const MiscTest 			= () => import('Views/Test/Misc.vue');
 const ToastsTest 		= () => import('Views/Test/Toasts.vue');
 const Notification		= () => import('Views/Test/Notification.vue');
-const Testing 			= () => import('Views/Router.vue');
+const Router 			= () => import('Views/Router.vue');
 
 export default [
 
 	{
-		path: '/home/',
-		name: 'home',
-		component: Home,
-		meta: {
-			text:'Home',
-			parentText:'Home',
-			icon:'fas fa-home',
-			visibleInDrawer:false
-		},
-		children: [
-			{
-				path: 'welcome',
-				component: Welcome,
-				name: 'home-welcome',
-				meta: {
-					text:'Welcome',
-					icon:'fas fa-home',
-					visibleInDrawer:true
-				},
-			}
-		]
-	},
-
-	{
 		path: '/testing/',
 		name: 'testing',
-		component: Testing,
+		component: Router,
 		meta: {
 			text:'Index',
 			parentText:'Testing',
@@ -87,22 +60,6 @@ export default [
 			
 			
 		]
-	},
+	}
 	
-
-	{
-		path: "/logout",
-		name: "logout",
-		component: Home,
-		meta: {
-			text:'Logout',
-			icon:'power-off',
-			visibleInDrawer:false
-		},
-	},
-
-	{
-		path: "/:catchAll(.*)",
-		component: NotFound,
-	},
 ];

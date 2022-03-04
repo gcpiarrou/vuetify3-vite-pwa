@@ -1,9 +1,15 @@
 import { createWebHashHistory, createRouter } from "@/vue-router";
 
-import baseRoutes 		from './baseRoutes';
+import base 		  from './base';
+import testing 		from './testing';
+import auth 		  from './auth';
+import cooking 		  from './cooking';
 
 const routes = [
-  ...baseRoutes
+  ...base,
+  ...cooking,
+  ...testing,
+  ...auth
 ];
 
 const router = createRouter({
