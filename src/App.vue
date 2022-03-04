@@ -13,8 +13,8 @@
 <script setup>
 	import { defineAsyncComponent } from "vue";
 	import { useAppTheme }    from "Helpers/composables/useAppTheme";
-    const { isDark }    = useAppTheme();
 
+    const { isDark }    = useAppTheme();
 	const AppBar	= defineAsyncComponent(() => import("Components/navigation/AppBar.vue"));
 	const Drawer	= defineAsyncComponent(() => import("Components/navigation/Drawer.vue"));
 	const ReloadPWA	= defineAsyncComponent(() => import("Components/pwa/ReloadPWA.vue"));
