@@ -12,9 +12,12 @@
   "dependencies": {
     "@mdi/font": "5.9.55",
     "@vueuse/core": "^7.7.0",
+    "@vueuse/firebase": "^7.7.0",
+    "firebase": "^9.6.7",
     "gh-pages": "^3.2.3",
     "lodash": "^4.17.21",
     "roboto-fontface": "*",
+    "uuid": "^8.3.2",
     "vite-plugin-pwa": "^0.11.13",
     "vue": "^3.2.25",
     "vue-router": "^4.0.13",
