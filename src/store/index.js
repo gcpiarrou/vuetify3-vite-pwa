@@ -1,9 +1,9 @@
 import { createStore } from 'vuex';
-
 import { useMediaQuery, useStorage } from '@vueuse/core'
 
 const isLargeScreen = useMediaQuery('(min-width: 1024px)')
 const isPreferredDark = useMediaQuery('(prefers-color-scheme: dark)')
+
 var isDark = useStorage('isDark', isPreferredDark);
 	
 const store = createStore({
