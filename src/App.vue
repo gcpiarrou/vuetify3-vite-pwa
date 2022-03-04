@@ -1,5 +1,5 @@
 <template>
-	<v-app :theme="isDark?'dark':'light'" style="height:100vh">
+	<v-app :theme="isDark?'dark':'light'" style="height:100vh;overflow:auto">
 			
 		<AppBar></AppBar>
 		<Drawer></Drawer>
