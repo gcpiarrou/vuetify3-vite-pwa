@@ -1,6 +1,5 @@
 const Router 			= () => import('Views/Router.vue');
 const CookingIndex 	    = () => import('Views/Cooking/Index.vue');
-const CookingNew 	    = () => import('Views/Cooking/New.vue');
 const CookingShow 	    = () => import('Views/Cooking/Show.vue');
 
 export default [
@@ -21,16 +20,6 @@ export default [
 				meta: {
 					text:'Index',
 					icon:'fas fa-fire',
-					visibleInDrawer:true
-				},
-			},
-			{
-				path: 'new',
-				component: CookingNew,
-				name: 'cooking-new',
-				meta: {
-					text:'New',
-					icon:'fas fa-plus',
 					visibleInDrawer:true
 				},
 			},
