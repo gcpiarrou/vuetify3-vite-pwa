@@ -1,12 +1,12 @@
 <template>
     <div>
         <v-row>
-            <v-col cols="12" xs="12" sm="8" md="8">
+            <v-col cols="12" xs="12" :sm="editable?8:12" :md="editable?8:12">
                 <div class="d-flex justify-space-between">
                     <v-text-field v-model="recipe.name" v-if="editable" label="Recipe name" variant="outlined" hide-details="auto"></v-text-field>
                     <v-row v-else>
                         <v-row>
-                            <v-img  :src="recipe.img" class="white--text align-end" gradient="to bottom, rgba(0,0,0,.1), rgba(0,0,0,.5)" height="200px" cover>
+                            <v-img :src="recipe.img" class="white--text align-end" gradient="to bottom, rgba(0,0,0,.1), rgba(0,0,0,.5)" height="300px" cover>
                                 <v-card-title class="text-white text-h4" v-text="recipe.name"></v-card-title>
                             </v-img>
                         </v-row>
@@ -198,6 +198,7 @@
     const showDeleteStepMessage = () => {
         toast.info('Press the button for 1 second to delete the step');
     }
+
     const showDeleteRecipeMessage = () => {
         toast.info('Press the button for 1 second to delete the recipe');
     }
@@ -206,6 +207,5 @@
         recipes.value = recipes.value.filter(x=>x.id!=recipe.value.id);
         router.push({ name: 'cooking-index' })
     }
-
 
 </script>
