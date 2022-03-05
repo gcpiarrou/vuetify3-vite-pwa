@@ -1,6 +1,5 @@
 <template>
-	<v-app :theme="isDark?'dark':'light'" style="height:100vh;overflow:auto">
-			
+	<v-app :theme="isDark?'dark':'light'" style="height:100vh;overflow-y:auto">
 		<AppBar></AppBar>
 		<Drawer></Drawer>
 		<ReloadPWA></ReloadPWA>
