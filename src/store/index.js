@@ -21,7 +21,7 @@ const store = createStore({
 			},
 			app:{
 				isDark: isDark,
-				name: 'Cooking app'
+				name: 'GCP App'
 			}
 		}
 	},
