@@ -10,7 +10,7 @@
 
                     <div class="my-4">
 
-                        <v-expansion-panels multiple>
+                        <v-expansion-panels>
                             <v-expansion-panel
                                 v-for="(step,i) in recipe.steps" :key="i"
                             >

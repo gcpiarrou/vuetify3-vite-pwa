@@ -1,13 +1,15 @@
 <template>
-    <div class="d-flex flex-column align-center">
-        <div>
-
-            <v-text-field label="Notification title" v-model="text" hide-details variant="outlined" ></v-text-field>
-
-            <v-btn class="ma-2" @click="persistentNotification" v-if="notificationPermission==='granted'">Persistent notification</v-btn>
-            <v-btn class="ma-2" @click="showNotifcation">Show notification</v-btn>
-        </div>
-    </div>    
+    <v-container fluid>
+        <div class="d-flex flex-column align-center">
+            <v-col cols="12">
+                <v-text-field label="Notification text" v-model="text" hide-details variant="outlined"></v-text-field>
+            </v-col>
+            <v-col cols="12" class="text-center">
+                <v-btn class="ma-2" @click="persistentNotification" v-if="notificationPermission==='granted'">Persistent notification</v-btn>
+                <v-btn class="ma-2" @click="showNotifcation">Show notification</v-btn>
+            </v-col>
+        </div>    
+    </v-container>
 </template>
 
 <script setup>
@@ -16,7 +18,7 @@
     import { onMounted } from "@vue/runtime-core";
     import { useWebNotification } from '@vueuse/core';
 
-    const text = ref("This is the notification title");
+    const text = ref("This is the notification text");
 
     
 
