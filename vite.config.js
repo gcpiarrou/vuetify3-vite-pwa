@@ -14,33 +14,32 @@ const VitePWAConfig = {
   includeAssets: ["/favicon.png"],
   strategies: "injectManifest",
   manifest: {
-    name: "PWA Test Project",
-    id: "Gaston Campana's PWA Test Project",
-    short_name: "Test",
-    theme_color: "#6200ee",
+    name: "GCP Testing App",
+    short_name: "GCP",
+    theme_color: "#0094f0",
     start_url: "./#/home/welcome",
     scope: "./",
     display: "standalone",
-    background_color: "#6200ee",
+    background_color: "#0094f0",
     icons: [
       {
-        src: "./img/icons/android-chrome-192x192.png",
+        src: "./img/icons/maskable_icon_x192.png",
         sizes: "192x192",
         type: "image/png",
       },
       {
-        src: "./img/icons/android-chrome-512x512.png",
+        src: "./img/icons/maskable_icon_x512.png",
         sizes: "512x512",
         type: "image/png",
       },
       {
-        src: "./img/icons/android-chrome-maskable-192x192.png",
+        src: "./img/icons/maskable_icon_x192.png",
         sizes: "192x192",
         type: "image/png",
         purpose: "maskable"
       },
       {
-        src: "./img/icons/android-chrome-maskable-512x512.png",
+        src: "./img/icons/maskable_icon_x512.png",
         sizes: "512x512",
         type: "image/png",
         purpose: "maskable",
