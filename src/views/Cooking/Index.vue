@@ -8,42 +8,22 @@
 		</v-row>
 	</v-container>
 
-	<v-fab-transition>
-                <v-btn
-                    class="rounded-pill ma-5"
-                    style="position:fixed;z-index:10"
-                    bottom
-                    right
-                    color="success"
-					@click="newRecipe"
-                >
-                    <v-icon>fas fa-plus</v-icon>
-                </v-btn>
-            </v-fab-transition>
-
+	<bottom-navigation>
+		<template v-slot>
+            <v-btn icon="fas fa-home" to="/"></v-btn>
+            <v-btn icon="fas fa-plus" @click="newRecipe"></v-btn>
+		</template>
+	</bottom-navigation>
+	
 </template>
 
 <script setup>
-	import { useStorage } from '@vueuse/core'
-    import { v4 as uuidv4 } from "uuid";
-	import {useRecipeImages} from 'Helpers/images/useRecipeImages';
 	import RecipeCard from 'Components/cooking/RecipeCard.vue';
 
-	var recipes = useStorage('recipes', []);
+	import { defineAsyncComponent } from "vue";
+	const BottomNavigation	= defineAsyncComponent(() => import("Components/navigation/BottomNavigation.vue"));
 
-	const {defaultImage} = useRecipeImages();
-
-	const newRecipe = () =>{
-
-		recipes.value = [
-			...recipes.value,
-			{
-				id: uuidv4(),
-				name:'New recipe',
-				img: defaultImage,
-				steps:[]
-			}
-		]
-	}
+	import { useCookingModule } from 'Helpers/composables/useCookingModule.js';
+	const {recipes, newRecipe} = useCookingModule();
 
 </script>

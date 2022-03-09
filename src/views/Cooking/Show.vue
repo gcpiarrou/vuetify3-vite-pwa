@@ -1,6 +1,18 @@
 <template>
         <div class="d-flex flex-columns flex-wrap ma-0">
 
+            <v-btn 
+                icon="fas fa-arrow-left" 
+                text-color="white" 
+                color="rgba(255, 255, 255, 0)" 
+                elevation="0" 
+                position="fixed" 
+                top 
+                left 
+                style="z-index:10"
+                @click="router.back()"
+            ></v-btn>
+
             <v-col v-if="editable" cols="12" sm="12" class="d-flex flex-wrap">
                 <v-col cols="12" xs="12" sm="12" md="8">
                     
@@ -62,7 +74,7 @@
                             </v-expansion-panel>
                         </v-expansion-panels>
 
-                        <div class="mt-4 text-center">
+                        <div class="mt-4 text-center" v-if="false">
                             <v-btn color="success" @click="addStep">Add new step</v-btn>
                         </div>
                         
@@ -128,11 +140,11 @@
                 
             </v-col>
 
-            <v-fab-transition>
+            <v-fab-transition v-if="false">
                     <v-btn
                         v-show="!editable"
                         class="rounded-pill ma-5"
-                        style="position:fixed;z-index:10"
+                        style="position:fixed;z-index:10;bottom:64px"
                         bottom
                         right
                         fab
@@ -142,11 +154,11 @@
                     </v-btn>
             </v-fab-transition>
 
-            <v-fab-transition>
+            <v-fab-transition v-if="false">
                 <v-btn
                     v-show="editable"
                     class="rounded-pill ma-5"
-                    style="position:fixed;z-index:10"
+                    style="position:fixed;z-index:10;bottom:64px"
                     bottom
                     right
                     fab
@@ -155,6 +167,58 @@
                     <v-icon>fas fa-save</v-icon>
                 </v-btn>
             </v-fab-transition>
+
+            <v-dialog v-model="newStepDialog">
+                <v-card>
+                    <v-card-title primary-title>
+                        New step
+                    </v-card-title>
+                    <v-card-text>
+                        <v-text-field
+                            label="Step name"
+                            variant="outlined"
+                            v-model="newStep.name"
+                        ></v-text-field>
+                        <v-textarea
+                            variant="outlined"
+                            label="Step body"
+                            v-model="newStep.body"
+                            hide-details="auto"
+                            density="compact"
+                            auto-grow
+                            rows="2"
+                        ></v-textarea>
+                        <div class="my-2 d-flex align-center justify-center">
+                            <v-rating
+                                v-model="newStep.heat"
+                                v-if="newStep.heat"
+                                empty-icon="fas fa-minus"
+                                full-icon="fas fa-fire-alt"
+                                hover
+                                size="x-small"
+                            ></v-rating>
+                            <v-btn v-if="newStep.heat" color="warning" @click="newStep.heat=0" size="small">
+                                <v-icon>fas fa-trash</v-icon> <v-icon>fas fa-fire-alt</v-icon> 
+                            </v-btn>
+                            <v-btn v-if="!newStep.heat" class="d-flex align-center" color="success" @click="newStep.heat=1" size="small">
+                                <v-icon>fas fa-plus</v-icon> <v-icon>fas fa-fire-alt</v-icon> 
+                            </v-btn>
+                        </div>
+                        
+                    </v-card-text>
+                    <v-card-actions class="d-flex flex-wrap justify-space-between">
+                        <v-btn variant="text" @click="newStepDialog = false">Close</v-btn>
+                        <v-btn color="success" @click="addStep">Add step</v-btn>
+                    </v-card-actions>
+                </v-card>
+            </v-dialog>
+
+            <bottom-navigation>
+                <template v-slot>
+                    <v-btn text-color="success" icon="fas fa-plus" @click="newStepDialog=true"></v-btn>
+                    <v-btn :text-color="editable?'success':'info'" :icon="editable?'fas fa-save':'fas fa-edit'" @click="editable = !editable"></v-btn>
+                </template>
+            </bottom-navigation>
 
             
         </div>
@@ -167,6 +231,10 @@
     import { OnLongPress } from '@vueuse/components';
     import { useToast } from "vue-toastification";
     
+    import { defineAsyncComponent } from "vue";
+    const BottomNavigation	= defineAsyncComponent(() => import("Components/navigation/BottomNavigation.vue"));
+
+
     const toast = useToast();
     const file = ref();
     const fileBase64 = ref({base64:null});
@@ -177,12 +245,15 @@
 	var recipes = useStorage('recipes', []);
     const editable = ref(false);
     const newStep = ref({name:'',body:''});
+    const newStepDialog = ref(false);
     const recipe = ref();
 
     recipe.value = recipes.value.filter(x=> x.id==route.params.id)[0];
 
     const addStep = () =>{
-        recipe.value.steps = [...recipe.value.steps, {name:'',body:''}]
+        recipe.value.steps = [...recipe.value.steps, newStep.value];
+        newStep.value={name:null,body:null};
+        newStepDialog.value=false;
     }
     const onFileInput = (e: Event) => {
         file.value = (e.target as HTMLInputElement).files![0];

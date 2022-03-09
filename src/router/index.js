@@ -9,7 +9,7 @@ const routes = [
   ...base,
   ...cooking,
   ...testing,
-  ...auth
+  //...auth
 ];
 
 const router = createRouter({

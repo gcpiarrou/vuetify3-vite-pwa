@@ -1,5 +1,6 @@
 <template>
     <v-navigation-drawer v-model="drawerIsOpen" app>
+
         <v-list density="compact" v-for="mainRoute in routesWithMeta" :key="mainRoute.path">
             <v-list-subheader>{{mainRoute.meta.parentText}}</v-list-subheader>
             <v-list-item :to="mainRoute.path" v-if="mainRoute.meta.visibleInDrawer">
@@ -20,9 +21,18 @@
             </v-list-item>
         </v-list>
     </v-navigation-drawer>
+
+    
 </template>
 
 <script setup>
     import { useDrawer }    from "Helpers/composables/useDrawer";
+    import { useAppTheme }    from "Helpers/composables/useAppTheme";
+    import { useStore } from 'vuex'
+    import { computed } from "vue";
     const { drawerIsOpen, routesWithMeta, secondaryDrawerRoutes}    = useDrawer();
+    const { isDark, toggleIsDark }    = useAppTheme();
+    const store                 = useStore();
+    const appName = computed(() => store.state.app.name);
+
 </script>

@@ -1,7 +1,7 @@
 <template>
 
     <div class="d-flex flex-column align-center">
-        <div>
+        <v-col cols="12">
             <h4 class="mt-5">Vibration</h4>
             <v-btn class="ma-2" @click="vibrate(200)">Vibrate 200ms</v-btn>
             <v-btn class="ma-2" @click="vibrateWithPattern()">Vibrate with pattern</v-btn>
@@ -11,7 +11,7 @@
 
             <h4 class="mt-5">TTS</h4>
             <v-btn class="ma-2" @click="play">Play TTS</v-btn>
-        </div>
+        </v-col>
     </div>    
 
 </template>
